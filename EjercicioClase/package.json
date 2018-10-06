@@ -1,0 +1,11 @@
+{
+  "name": "app",
+  "version": "1",
+  "main": "app.js",
+  "author": "lucia",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1"
+  }
+}

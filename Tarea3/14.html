@@ -1,0 +1,88 @@
+<!--Seung Lee - A01021720 -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>JS Reference VS Copy</title>
+    </head>
+    <body>
+        <script>
+            // Strings, numbers and booleans
+            let age = 100;
+            let age2 = age;
+            console.log(age, age2);
+            age = 200;
+            console.log(age,age2);
+
+            let name = 'Wes';
+            let name2 = name;
+            console.log(name, name2);
+            name = 'Wesley';
+            console.log(name, name2);
+
+            // Array
+            const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+            const team = players;
+            console.log(players, team);
+            
+            // If we try to update it we will update the copy and the original one
+            team[5] = 'Lux';
+
+            // Make an actual copy of it
+            const team2 = players.slice();
+
+            // Create a new array and concat the old one
+            const team3 = [].concat(players);
+
+            // Use ES6 spread, it takes each item and puts it into the new array
+            const team4 = [...players];
+            team4[3] = 'Test'; // Original one remains untouched
+            console.log(team4);
+
+            // Make an array from an array
+            const team5 = Array.from(players);
+
+            // OBJECTS
+            const person = {
+                name: 'Wes Bos',
+                age: 80
+            };
+
+            // Bad copy, it updates the original object
+            const captain = person;
+            captain.number = 99;
+
+            // Use object.assign to copy
+            // parameters (blank object, object to copy properties from, properties to overwrite)
+            const cap2 = Object.assign({}, person, {number: 99, age: 12});
+            console.log(cap2);
+
+            // Possible Object spred comming
+            // const cap3 = {...person};
+
+            // Object.assign works only 1 level deep, for arrays and objects
+            // lodash has a cloneDeep method which copies an object entirely
+
+            const wes = {
+                name: 'Wes',
+                age: 100,
+                social: {
+                    twitter: '@wesbos',
+                    facebook: 'wesbos.developer'
+                }
+            };
+
+            console.log(wes);
+
+            const dev = Object.assign({}, wes);
+            // dev.social.twitter = '@coolman'; updates original object too
+
+            // Cheeting way of deepclone
+            // It uses a string and then makes it an object instantly
+            const dev2 = JSON.parse(JSON.stringify(wes));
+            dev2.social.twitter = '@coolman';
+        </script>
+    </body>
+</html>
